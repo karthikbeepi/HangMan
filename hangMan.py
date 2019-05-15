@@ -14,11 +14,8 @@ class StringDataBase:
                         current_word_number = current_word_number+1
                     else:
                         return word
-    def writeStateToFile():
-        s =""
 
 class Game:
-
     def __init__(self):
         self.current_guess = "----"
         self.random_word = StringDataBase.getRandomWord()   
@@ -30,12 +27,13 @@ class Game:
     def displayResults(self):
         s = ""
 
-    def calculateScore(self):
+    def calculateScoreSuccess(self):
         multiplier = 0
         for i, c in enumerate(self.current_guess):
             if( c == '-' ):
                 multiplier = multiplier + value_to_character[self.random_word[i]]
-        multiplier = multiplier / self.letter_requested 
+        if(self.letter_requested > 0):
+            multiplier = multiplier / self.letter_requested 
         return 100 * multiplier * (1-0.1*(self.bad_guesses)) 
 
     def runGame(self):
@@ -49,14 +47,14 @@ class Game:
                 word = input("Enter word:")
                 if(word == self.random_word):
                     print("Good Work!")
-                    self.score = self.calculateScore()
+                    self.score = self.calculateScoreSuccess()
                     return str(self.random_word), "Success", str(self.bad_guesses), str(self.missed_letters), str(self.score)
                 else:
                     self.bad_guesses = self.bad_guesses+1
                     print("Try again!")
             elif(choice == 't'):
                 print(self.random_word)
-                self.score = 0
+                self.score = self.calculateScoreGaveUp()
                 return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score)
             elif(choice == 'l'):
                 self.letter_requested = self.letter_requested + 1
