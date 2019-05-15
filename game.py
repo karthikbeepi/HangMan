@@ -53,7 +53,7 @@ class Game:
                 if(word == self.random_word):
                     print("Good Work!")
                     self.score = self.calculateScoreSuccess()
-                    return str(self.random_word), "Success", str(self.bad_guesses), str(self.missed_letters), str(self.score), False
+                    return str(self.random_word), "Success", str(self.bad_guesses), str(self.missed_letters), str(self.score), "correct guess"
                 else:
                     self.bad_guesses = self.bad_guesses+1
                     print("Sorry, Try again!")
@@ -61,7 +61,7 @@ class Game:
             elif(choice == 't'):
                 print(self.random_word)
                 self.score = self.calculateScoreGaveUp()
-                return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), False
+                return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), "gave word"
             
             elif(choice == 'l'):
                 self.letterChoice()
@@ -69,8 +69,8 @@ class Game:
             elif(choice == 'q'):
                 if(self.missed_letters > 0 or self.bad_guesses > 0):
                     self.score = self.calculateScoreGaveUp()
-                    return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), True
+                    return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), 'try'
                 else:
-                    return True
+                    return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), 'no try'
             else:
                 print("Please enter valid choice [g, t, l, q]")
