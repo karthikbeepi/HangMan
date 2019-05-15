@@ -4,6 +4,7 @@ class Game:
     def __init__(self):
         self.current_guess = "----"
         self.random_word = StringDataBase.getRandomWord()   
+        self.random_word = "abcd"
         self.bad_guesses = 0
         self.score = 0
         self.missed_letters = 0
@@ -16,7 +17,7 @@ class Game:
                 multiplier = multiplier + value_to_character[self.random_word[i]]
         if(self.letter_requested > 0):
             multiplier = multiplier / self.letter_requested 
-        return 100 * multiplier * (1-0.1*(self.bad_guesses)) 
+        return multiplier * (1-0.1*(self.bad_guesses)) 
 
     def calculateScoreGaveUp(self):
         multiplier = 0
@@ -68,7 +69,7 @@ class Game:
                 self.letterChoice()
             
             elif(choice == 'q'):
-                if(self.missed_letters > 0 or self.bad_guesses > 0):
+                if(self.letter_requested > 0 or self.bad_guesses > 0):
                     self.score = self.calculateScoreGaveUp()
                     return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), 'try'
                 else:
