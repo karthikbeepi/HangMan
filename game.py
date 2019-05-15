@@ -28,6 +28,7 @@ class Game:
     def letterChoice(self):
         self.letter_requested = self.letter_requested + 1
         letter = input("Enter a letter:")
+        letter = letter.lower()
         number_of_match = 0
         for i, c in enumerate(self.current_guess):
             if(self.random_word[i] == letter):
@@ -36,31 +37,37 @@ class Game:
         print("You found "+str(number_of_match)+" letter(s)")
         if(number_of_match == 0):
             self.missed_letters = self.missed_letters+1
-
+    
     def runGame(self):
-        flag = True
         print("\n***The great guessing game***")
-        while(flag):
+        while(True):
+
             print()
             print("Current Guess: "+self.current_guess+" "+self.random_word)
             choice = input("g = guess, t = tell me, l for letter and q to quit : ")
+            choice = choice.lower()
+
             if(choice == 'g'):
                 word = input("Enter word:")
+                word = word.lower()
                 if(word == self.random_word):
                     print("Good Work!")
                     self.score = self.calculateScoreSuccess()
-                    return str(self.random_word), "Success", str(self.bad_guesses), str(self.missed_letters), str(self.score)
+                    return str(self.random_word), "Success", str(self.bad_guesses), str(self.missed_letters), str(self.score), False
                 else:
                     self.bad_guesses = self.bad_guesses+1
                     print("Sorry, Try again!")
+
             elif(choice == 't'):
                 print(self.random_word)
                 self.score = self.calculateScoreGaveUp()
-                return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score)
+                return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), False
+            
             elif(choice == 'l'):
                 self.letterChoice()
+            
             elif(choice == 'q'):
-                if(self.missed_letters != 0 or self.bad_guesses != 0):
-                     return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score)
+                if(self.missed_letters > 0 or self.bad_guesses > 0):
+                    return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), True
                 else:
                     return True
