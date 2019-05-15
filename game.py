@@ -33,7 +33,7 @@ class Game:
             multiplier = multiplier * 0.9
             reducer = reducer-1
         # return multiplier * (1-0.1*(self.bad_guesses)) #to give constant 10% decrease
-        return multiplier #if reduced by a variable 10% decrease
+        return multiplier*10 #if reduced by a variable 10% decrease
 
     @classmethod
     def calculateScoreGaveUp(self):
