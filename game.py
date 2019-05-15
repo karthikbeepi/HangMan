@@ -43,7 +43,8 @@ class Game:
         while(True):
 
             print()
-            print("Current Guess: "+self.current_guess+" "+self.random_word)
+            print("Current Guess: "+self.current_guess)
+            # print("The word: "+" "+self.random_word)
             choice = input("g = guess, t = tell me, l for letter and q to quit : ")
             choice = choice.lower()
 

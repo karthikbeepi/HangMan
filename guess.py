@@ -8,7 +8,7 @@ final_score = 0
 while(True):
     g = Game()
     game_result = g.runGame()
-    print(game_result)
+    # print(game_result)
     if (game_result[5] != 'no try'):
         results = results + "\n" + str(i)
         for attribute in game_result[:5]:
@@ -16,8 +16,9 @@ while(True):
         final_score = final_score + float(game_result[4])
         i = i + 1
         if (game_result[5] == 'try'):
+            print("\n\n\nScoreBoard!!!")
             print(results)
-            print("Final Score : "+str(final_score))
+            print("\nFinal Score : "+str(final_score))
             break
     else:
         if(i>1):
