@@ -1,7 +1,15 @@
+#Main logic file
+
+#for all imports from StringDatabase and frequency of character
 from stringDatabase import StringDataBase, value_to_character
 
 class Game:
+    ''' The Game class which basically holds the logic for the game implementation'''
+
+    @classmethod
     def __init__(self):
+        ''' Basic constructor which is responsible for initialisation of instance variables'''
+
         self.current_guess = "----"
         self.random_word = StringDataBase.getRandomWord()   
         self.random_word = "abcd"
@@ -10,23 +18,37 @@ class Game:
         self.missed_letters = 0
         self.letter_requested = 0
 
+    @classmethod
     def calculateScoreSuccess(self):
+        '''Method for calculating the score on successful guess'''
+
         multiplier = 0
         for i, c in enumerate(self.current_guess):
             if( c == '-' ):
                 multiplier = multiplier + value_to_character[self.random_word[i]]
         if(self.letter_requested > 0):
             multiplier = multiplier / self.letter_requested 
-        return multiplier * (1-0.1*(self.bad_guesses)) 
+        reducer = self.bad_guesses
+        while(reducer>0): #if was done iteratively
+            multiplier = multiplier * 0.9
+            reducer = reducer-1
+        # return multiplier * (1-0.1*(self.bad_guesses)) #to give constant 10% decrease
+        return multiplier #if reduced by a variable 10% decrease
 
+    @classmethod
     def calculateScoreGaveUp(self):
+        '''Method for calculating the score when the user gives up '''
+
         multiplier = 0
         for i, c in enumerate(self.current_guess):
             if( c == '-' ):
                 multiplier = multiplier + value_to_character[self.random_word[i]]
         return -multiplier
 
+    @classmethod
     def letterChoice(self):
+        '''When the user requests to guess a letter'''
+
         self.letter_requested = self.letter_requested + 1
         letter = input("Enter a letter:")
         letter = letter.lower()
@@ -39,7 +61,10 @@ class Game:
         if(number_of_match == 0):
             self.missed_letters = self.missed_letters+1
     
+    @classmethod
     def runGame(self):
+        ''' Method to run the game'''
+
         print("\n***The great guessing game***")
         while(True):
 
