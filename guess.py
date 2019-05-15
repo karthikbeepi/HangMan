@@ -12,7 +12,7 @@ while(True):
         if(i>1):
             print(results)
             print("Final Score : "+str(final_score))
-            break
+        break
     else:
         results =  results + "\n" + str(i)
         for attribute in game_result[:5]:

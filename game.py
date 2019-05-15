@@ -68,6 +68,9 @@ class Game:
             
             elif(choice == 'q'):
                 if(self.missed_letters > 0 or self.bad_guesses > 0):
+                    self.score = self.calculateScoreGaveUp()
                     return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), True
                 else:
                     return True
+            else:
+                print("Please enter valid choice [g, t, l, q]")
