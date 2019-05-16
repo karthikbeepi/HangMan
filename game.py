@@ -12,7 +12,7 @@ class Game:
 
         self.current_guess = "----"
         self.random_word = StringDataBase.getRandomWord()   
-        self.random_word = "abcd"
+        # self.random_word = "abcd"
         self.bad_guesses = 0
         self.score = 0
         self.missed_letters = 0

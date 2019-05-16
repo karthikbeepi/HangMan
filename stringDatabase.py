@@ -14,7 +14,13 @@ class StringDataBase:
     @staticmethod
     def getRandomWord ():
         '''Method to return a random word from the file'''
-        random_number = random.randint(0, 4029)
+
+        no_of_words = 0
+        with open("four_letters.txt", "r") as four_letters_file:
+            for line in four_letters_file:
+                for word in line.split():
+                    no_of_words = no_of_words +1
+        random_number = random.randint(0, no_of_words-1)
         current_word_number = 0
         random_word = ""
         with open("four_letters.txt", "r") as four_letters_file:
