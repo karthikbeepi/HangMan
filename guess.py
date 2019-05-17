@@ -6,8 +6,10 @@ from game import Game
 #The class where all the program runs
 class Guess:
     '''  This is the main Guess class where the program is run
-    This primarily has one static method to run the program called as run() 
-    Implicitly, it calls the Game class to run'''
+    This primarily has one static method to run the program called as run()
+    Implicitly, it calls the Game class to run
+    Note: Here, the score for a successful guess is far more than a
+    give up to decrease the difficulty of the game'''
 
     @staticmethod
     def run():
@@ -37,6 +39,8 @@ class Guess:
                     print("\n\n\nScoreBoard!!!")
                     print(results)
                     print("\nFinal Score : "+str(final_score))
+                else:
+                    print("No games played to show the results of scoreboard!")
                 break
 
 Guess.run()

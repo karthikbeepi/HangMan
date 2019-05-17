@@ -51,6 +51,9 @@ class Game:
 
         self.letter_requested = self.letter_requested + 1
         letter = input("Enter a letter:")
+        while(len(letter) > 1 or letter.isalpha() == False ):
+            print("Enter a valid alphabet!")
+            letter = input("Enter a letter:")
         letter = letter.lower()
         number_of_match = 0
         for i, c in enumerate(self.current_guess):
@@ -72,10 +75,16 @@ class Game:
             print("Current Guess: "+self.current_guess)
             # print("The word: "+" "+self.random_word)
             choice = input("g = guess, t = tell me, l for letter and q to quit : ")
+            while(len(choice) > 1 or choice.isalpha() == False ):
+                print("Enter a valid alphabet!")
+                choice = input("Enter a letter:")
             choice = choice.lower()
 
             if(choice == 'g'):
                 word = input("Enter word:")
+                while(len(word) != 4 or word.isalpha == False):
+                    print("Enter a 4-letter word for a guess with alphabets only!")
+                    word = input("Enter word:")
                 word = word.lower()
                 if(word == self.random_word):
                     print("Good Work!")
@@ -86,7 +95,7 @@ class Game:
                     print("Sorry, Try again!")
 
             elif(choice == 't'):
-                print(self.random_word)
+                print("The word is:"+self.random_word)
                 self.score = self.calculateScoreGaveUp()
                 return str(self.random_word), "Gave Up", str(self.bad_guesses), str(self.missed_letters), str(self.score), "gave word"
             
