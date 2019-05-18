@@ -12,7 +12,7 @@ class Game:
 
         self.current_guess = "----"
         self.random_word = StringDataBase.getRandomWord()   
-        # self.random_word = "abcd"
+        self.random_word = "abcd"
         self.bad_guesses = 0
         self.score = 0
         self.missed_letters = 0
@@ -28,12 +28,11 @@ class Game:
                 multiplier = multiplier + value_to_character[self.random_word[i]]
         if(self.letter_requested > 0):
             multiplier = multiplier / self.letter_requested
-        reducer = self.bad_guesses
-        while(reducer>0): #if was done iteratively
-            multiplier = multiplier * 0.9
-            reducer = reducer-1
-        # return multiplier * (1-0.1*(self.bad_guesses)) #to give constant 10% decrease
-        return multiplier
+        # reducer = self.bad_guesses
+        # while(reducer>0): #if was done iteratively
+        #     multiplier = multiplier * 0.9
+        #     reducer = reducer-1
+        return multiplier * (1-0.1*(self.bad_guesses)) #to give constant 10% decrease
 
     @classmethod
     def calculateScoreGaveUp(self):
